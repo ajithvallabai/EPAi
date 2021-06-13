@@ -24,11 +24,11 @@ README_CONTENT_CHECK_FOR = [
 
 def test_part1_readme_exists():
     """ Checks if readme.md file exists    """    
-    assert os.path.isfile("README.md"), "README.md file missing!"
+    assert os.path.isfile("Session_6_First_Class_Functions/README.md"), "README.md file missing!"
 
 def test_part1_readme_100_words():
     """ Checks if Readme contains atleast 500 words """    
-    readme = open("README.md", "r")
+    readme = open("Session_6_First_Class_Functions/README.md", "r")
     readme_words = readme.read().split()
     readme.close()
     assert len(readme_words) >= 100, "Make your README.md file interesting! Add atleast 500 words"
@@ -37,7 +37,7 @@ def test_part1_readme_100_words():
 def test_part1_readme_proper_description():
     """ Checks if important contents are being convered in readme    """    
     READMELOOKSGOOD = True
-    f = open("README.md", "r", encoding="utf-8")
+    f = open("Session_6_First_Class_Functions/README.md", "r", encoding="utf-8")
     content = f.read()
     f.close()
     for c in README_CONTENT_CHECK_FOR:
@@ -49,7 +49,7 @@ def test_part1_readme_proper_description():
 
 def test_part1_readme_file_for_more_than_10_hashes():
     """ Checks if we have done proper formating  """    
-    f = open("README.md", "r", encoding="utf-8")
+    f = open("Session_6_First_Class_Functions/README.md", "r", encoding="utf-8")
     content = f.read()
     f.close()
     assert content.count("#") >= 10
