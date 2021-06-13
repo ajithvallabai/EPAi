@@ -63,59 +63,7 @@ def test_part1_function_name_had_cap_letter():
 
 
 
-task1_ans = [(('spades', '2'),),
- (('spades', '3'),),
- (('spades', '4'),),
- (('spades', '5'),),
- (('spades', '6'),),
- (('spades', '7'),),
- (('spades', '8'),),
- (('spades', '9'),),
- (('spades', '10'),),
- (('spades', 'jack'),),
- (('spades', 'queen'),),
- (('spades', 'king'),),
- (('spades', 'ace'),),
- (('clubs', '2'),),
- (('clubs', '3'),),
- (('clubs', '4'),),
- (('clubs', '5'),),
- (('clubs', '6'),),
- (('clubs', '7'),),
- (('clubs', '8'),),
- (('clubs', '9'),),
- (('clubs', '10'),),
- (('clubs', 'jack'),),
- (('clubs', 'queen'),),
- (('clubs', 'king'),),
- (('clubs', 'ace'),),
- (('hearts', '2'),),
- (('hearts', '3'),),
- (('hearts', '4'),),
- (('hearts', '5'),),
- (('hearts', '6'),),
- (('hearts', '7'),),
- (('hearts', '8'),),
- (('hearts', '9'),),
- (('hearts', '10'),),
- (('hearts', 'jack'),),
- (('hearts', 'queen'),),
- (('hearts', 'king'),),
- (('hearts', 'ace'),),
- (('diamonds', '2'),),
- (('diamonds', '3'),),
- (('diamonds', '4'),),
- (('diamonds', '5'),),
- (('diamonds', '6'),),
- (('diamonds', '7'),),
- (('diamonds', '8'),),
- (('diamonds', '9'),),
- (('diamonds', '10'),),
- (('diamonds', 'jack'),),
- (('diamonds', 'queen'),),
- (('diamonds', 'king'),),
- (('diamonds', 'ace'),)]
-task2_ans = [('spades', '2'),
+task_12_ans = [('spades', '2'),
  ('spades', '3'),
  ('spades', '4'),
  ('spades', '5'),
@@ -172,13 +120,13 @@ def check_task1():
     vals = [ '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9' , '10' , 'jack' , 'queen' , 'king' , 'ace' ]
     suits = [ 'spades' , 'clubs' , 'hearts' , 'diamonds' ]
     #print(part1.DeckSingleLine(vals,suits))
-    assert list(part1.decksingleline(vals,suits)) == task1_ans , 'Please check task1 function'
+    assert list(part1.decksingleline(vals,suits)) == task_12_ans , 'Please check task1 function'
 
 
 def check_task2():
     vals = [ '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9' , '10' , 'jack' , 'queen' , 'king' , 'ace' ]
     suits = [ 'spades' , 'clubs' , 'hearts' , 'diamonds' ]
-    assert list(part1.create_deck(vals,suits)) == task2_ans , 'Please check task2 function'
+    assert list(part1.create_deck(vals,suits)) == task_12_ans , 'Please check task2 function'
 
 # check gamer
 def check_poker_game():

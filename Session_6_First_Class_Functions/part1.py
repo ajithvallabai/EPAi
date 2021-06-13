@@ -1,5 +1,5 @@
 ## Task 1
-decksingleline = lambda vals,suits: zip(map(lambda pair: pair , [(eVal,eSuit) for eVal in suits for eSuit in vals] ))
+decksingleline = lambda vals,suits: list(map(lambda pair: pair[0] , zip([(eVal,eSuit) for eVal in suits for eSuit in vals])))
 ## Task 2
 def create_deck(vals : 'list' , suits : 'list' ) -> 'list of tuples':
     ''' 
