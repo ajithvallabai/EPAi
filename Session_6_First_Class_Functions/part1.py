@@ -19,8 +19,8 @@ def create_deck(vals : 'list' , suits : 'list' ) -> 'list of tuples':
 ## Imports
 from collections import Counter 
 ## static stores
-markKey = {'A':14,'K':13,'Q':12,'J':11, '2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10}
-markKeyTwo = {'A':1,'K':13,'Q':12,'J':11,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10}
+markKey = {'ace':14,'king':13,'queen':12,'jack':11, '2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10}
+markKeyTwo = {'ace':1,'king':13,'queen':12,'jack':11,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10}
 ## Utility functions
 def split_list(n :'int') -> 'returns list indexs':
     """
@@ -49,11 +49,11 @@ def evaluate_cards(valList: 'list') -> 'Score of cards':
     valList: input list of  string values
     return: summation of values
     '''
-    marks = 0
+    marks = 0    
     for each in valList:
       if each.isdigit():
         marks+=int(each)
-      else:
+      else:        
         marks+= markKey[each]
     return marks
 
@@ -73,7 +73,7 @@ def evaluate_cards_int(valList: 'list') -> 'Score of cards':
 def royal_flush(cards: 'list') -> 'result':
     '''
     In Royal flush all the cards would belong to same suite
-    and it will contain [A,K,Q,J,10]
+    and it will contain [ace,king,queen,jack,10]
     cards: players cards
     return: status,Name,priority,marks
     '''
@@ -82,7 +82,7 @@ def royal_flush(cards: 'list') -> 'result':
     for each in cards:
         suitCheck.append(each[0])
         valsCheck.append(each[1])
-    if len(set(suitCheck)) == 1 and (valsCheck == ['A','K','Q','J','10']):
+    if len(set(suitCheck)) == 1 and (valsCheck == ['ace','king','queen','jack','10']):
         return {"status":1,"Name":"RoyalFlush","Priority":1,"Marks":1}
     else:
         return {"status":0,"Name":"RoyalFlush","Priority":1,"Marks":0}
@@ -119,7 +119,7 @@ def straight_flush(cards: 'list') -> 'result':
 
 def four_of_a_kind(cards: 'list') -> 'result':
     '''
-    In four of a kind , four of the cards  would have same value    
+    In four of ace kind , four of the cards  would have same value    
     cards: players cards
     return: status,Name,priority,marks
     ''' 
@@ -134,7 +134,7 @@ def four_of_a_kind(cards: 'list') -> 'result':
 
 def full_house(cards: 'list') -> 'result':
     '''
-    Contains 3 of a kind and 2 of another kind    
+    Contains 3 of ace kind and 2 of another kind    
     cards: players cards
     return: status,Name,priority,marks
     '''     
@@ -218,18 +218,18 @@ def two_pair(cards: 'list') -> 'result':
         valsCheck.append(each[1])
     valcount =  dict(Counter(valsCheck))
     countOfPairs = 0
-    mark = 0
+    mark = 0    
     for key,value in valcount.items():
       if value == 2:
         countOfPairs += 1
-        mark += evaluate_cards(key)
+        mark += markKey[key]
     if countOfPairs == 2:
       return {"status":1,"Name":"Twopair","Priority":8,"Marks":mark*2}    
     return {"status":0,"Name":"Twopair","Priority":8,"Marks":0}
 
 def one_pair(cards: 'list') -> 'result':   
     '''
-    Contains one pair of a values    
+    Contains one pair of ace values    
     cards: players cards
     return: status,Name,priority,marks
     '''  
@@ -242,7 +242,7 @@ def one_pair(cards: 'list') -> 'result':
     for key,value in valcount.items():
       if value == 2:
         countOfPairs += 1
-        mark += evaluate_cards(key)
+        mark += markKey[key]
     if countOfPairs == 1:
       return {"status":1,"Name":"onepair","Priority":9,"Marks":mark*2}    
     return {"status":0,"Name":"onepair","Priority":9,"Marks":0}
@@ -258,7 +258,8 @@ def high_card(cards: 'list') -> 'result':
     mark = 0
     for each in cards:        
         valsCheck.append(each[1])
-        mark += evaluate_cards(each[1])    
+        #mark += evaluate_cards(each[1])    
+        mark += markKey[each[1]]
         suitsCheck.append(each[0])
     if len(set(valsCheck)) == 5 and len(set(suitsCheck)) >=2:           
         return {"status":1,"Name":"highcard","Priority":10,"Marks":mark}    

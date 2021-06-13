@@ -63,142 +63,219 @@ def test_part1_function_name_had_cap_letter():
 
 
 
-task_12_ans = [('spades', '2'),
- ('spades', '3'),
- ('spades', '4'),
- ('spades', '5'),
- ('spades', '6'),
- ('spades', '7'),
- ('spades', '8'),
- ('spades', '9'),
- ('spades', '10'),
- ('spades', 'jack'),
- ('spades', 'queen'),
- ('spades', 'king'),
- ('spades', 'ace'),
- ('clubs', '2'),
- ('clubs', '3'),
- ('clubs', '4'),
- ('clubs', '5'),
- ('clubs', '6'),
- ('clubs', '7'),
- ('clubs', '8'),
- ('clubs', '9'),
- ('clubs', '10'),
- ('clubs', 'jack'),
- ('clubs', 'queen'),
- ('clubs', 'king'),
- ('clubs', 'ace'),
- ('hearts', '2'),
- ('hearts', '3'),
- ('hearts', '4'),
- ('hearts', '5'),
- ('hearts', '6'),
- ('hearts', '7'),
- ('hearts', '8'),
- ('hearts', '9'),
- ('hearts', '10'),
- ('hearts', 'jack'),
- ('hearts', 'queen'),
- ('hearts', 'king'),
- ('hearts', 'ace'),
- ('diamonds', '2'),
- ('diamonds', '3'),
- ('diamonds', '4'),
- ('diamonds', '5'),
- ('diamonds', '6'),
- ('diamonds', '7'),
- ('diamonds', '8'),
- ('diamonds', '9'),
- ('diamonds', '10'),
- ('diamonds', 'jack'),
- ('diamonds', 'queen'),
- ('diamonds', 'king'),
+task_12_ans = [('spades', '2'), ('spades', '3'), ('spades', '4'),
+ ('spades', '5'), ('spades', '6'), ('spades', '7'), ('spades', '8'), ('spades', '9'),
+ ('spades', '10'), ('spades', 'jack'), ('spades', 'queen'), ('spades', 'king'), ('spades', 'ace'), ('clubs', '2'), ('clubs', '3'), ('clubs', '4'), ('clubs', '5'), ('clubs', '6'), ('clubs', '7'), ('clubs', '8'), ('clubs', '9'), ('clubs', '10'), ('clubs', 'jack'), ('clubs', 'queen'), ('clubs', 'king'), ('clubs', 'ace'), ('hearts', '2'), ('hearts', '3'), ('hearts', '4'), ('hearts', '5'), ('hearts', '6'), ('hearts', '7'), ('hearts', '8'), ('hearts', '9'), ('hearts', '10'), ('hearts', 'jack'), ('hearts', 'queen'), ('hearts', 'king'), ('hearts', 'ace'), ('diamonds', '2'), ('diamonds', '3'), ('diamonds', '4'), ('diamonds', '5'), ('diamonds', '6'), ('diamonds', '7'), ('diamonds', '8'),
+ ('diamonds', '9'), ('diamonds', '10'), ('diamonds', 'jack'), ('diamonds', 'queen'), ('diamonds', 'king'),
  ('diamonds', 'ace')]
 
-def check_task1():
+def test_check_task1():
     vals = [ '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9' , '10' , 'jack' , 'queen' , 'king' , 'ace' ]
     suits = [ 'spades' , 'clubs' , 'hearts' , 'diamonds' ]
     #print(part1.DeckSingleLine(vals,suits))
     assert list(part1.decksingleline(vals,suits)) == task_12_ans , 'Please check task1 function'
 
 
-def check_task2():
+def test_check_task2():
     vals = [ '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9' , '10' , 'jack' , 'queen' , 'king' , 'ace' ]
     suits = [ 'spades' , 'clubs' , 'hearts' , 'diamonds' ]
     assert list(part1.create_deck(vals,suits)) == task_12_ans , 'Please check task2 function'
 
 # check gamer
-def check_poker_game():
-    player1 = [('spades', 'A'),  ('spades', 'K'),  ('spades', 'Q'),  ('spades', 'J'), ('spades', '10'),]
-    player2 = [('spades', 'A'),  ('hearts', 'K'),  ('diamonds', '2'),  ('spades', '4'), ('clubs', '3')]
+def test_check_poker_game():
+    player1 = [('spades', 'ace'),  ('spades', 'king'),  ('spades', 'queen'),  ('spades', 'jack'), ('spades', '10'),]
+    player2 = [('spades', 'ace'),  ('hearts', 'king'),  ('diamonds', '2'),  ('spades', '4'), ('clubs', '3')]
     assert part1.poker_game(player1,player2) == 'Player1 WON' , 'Please Check you gamer function'
     
 
 # check 10 functions
-def check_royal_flush():
-    player1 = [('spades', 'A'),  ('spades', 'K'),  ('spades', 'Q'),  ('spades', 'J'), ('spades', '10'),]
+def test_check_royal_flush():
+    player1 = [('spades', 'ace'),  ('spades', 'king'),  ('spades', 'queen'),  ('spades', 'jack'), ('spades', '10'),]
     assert part1.royal_flush(player1)['status'] == 1, 'Please Check you validity of royal flush'
     assert part1.royal_flush(player1)['Marks'] == 1 , 'Please Check you evaluation of royal flush'
 
-def check_straight_flush():
+def test_check_straight_flush():
     player1 = [('hearts', '10'),  ('hearts', '9'),  ('hearts', '8'),  ('hearts', '7'), ('hearts', '6')]
     assert part1.straight_flush(player1)['status'] == 1, 'Please Check you validity of straight_flush'
     assert part1.straight_flush(player1)['Marks'] == 40, 'Please Check you evaluation of straight_flush'
 
-def check_four_of_a_kind():
-    player1 = [('clubs', 'A'),  ('clubs', '7'),  ('hearts', '7'),  ('diamonds', '7'), ('spades', '7')]
+def test_check_four_of_a_kind():
+    player1 = [('clubs', 'ace'),  ('clubs', '7'),  ('hearts', '7'),  ('diamonds', '7'), ('spades', '7')]
     assert part1.four_of_a_kind(player1)['status'] == 1, 'Please Check you validity of four_of_a_kind'
     assert part1.four_of_a_kind(player1)['Marks'] == 28, 'Please Check you evaluation of four_of_a_kind'
 
 
-def check_full_house():
-    player1 = [('spades', 'A'),  ('hearts', 'A'),  ('diamonds', 'A'),  ('spades', 'J'), ('hearts', 'J')]
+def test_check_full_house():
+    player1 = [('spades', 'ace'),  ('hearts', 'ace'),  ('diamonds', 'ace'),  ('spades', 'jack'), ('hearts', 'jack')]
     assert part1.full_house(player1)['status'] == 1, 'Please Check you validity of full_house'
     assert part1.full_house(player1)['Marks'] == 64, 'Please Check you evaluation of full_house'
 
-def check_flush():
-    player1 = [('spades', 'A'),  ('spades', 'K'),  ('spades', '8'),  ('spades', '3'), ('spades', '5')]
+def test_check_flush():
+    player1 = [('spades', 'ace'),  ('spades', 'king'),  ('spades', '8'),  ('spades', '3'), ('spades', '5')]
     assert part1.flush(player1)['status'] == 1, 'Please Check you validity of flush'
     assert part1.flush(player1)['Marks'] == 43, 'Please Check you evaluation of flush'
 
-def check_straight():
+def test_check_straight():
     player1 = [('spades', '8'),  ('diamonds', '7'),  ('hearts', '6'),  ('clubs', '5'), ('spades', '4')]
     assert part1.straight(player1)['status'] == 1, 'Please Check you validity of straight'
     assert part1.straight(player1)['Marks'] == 30, 'Please Check you evaluation of straight'
 
-def check_three_of_a_kind():
-    player1 = [('spades', '7'),  ('spades', '2'),  ('hearts', 'Q'),  ('clubs', 'Q'), ('spades', 'Q')]
+def test_check_three_of_a_kind():
+    player1 = [('spades', '7'),  ('spades', '2'),  ('hearts', 'queen'),  ('clubs', 'queen'), ('spades', 'queen')]
     assert part1.three_of_a_kind(player1)['status'] == 1, 'Please Check you validity of three_of_a_kind'
     assert part1.three_of_a_kind(player1)['Marks'] == 45, 'Please Check you evaluation of three_of_a_kind'
 
-def check_two_pair():
-    player1 = [('spades', 'A'),  ('hearts', 'A'),  ('spades', '4'),  ('clubs', '4'), ('spades', '3')]
+def test_check_two_pair():
+    player1 = [('spades', 'ace'),  ('hearts', 'ace'),  ('spades', '4'),  ('clubs', '4'), ('spades', '3')]
     assert part1.two_pair(player1)['status'] == 1, 'Please Check you validity of two_pair'
     assert part1.two_pair(player1)['Marks'] == 36, 'Please Check you evaluation of two_pair'
 
 
-def check_one_pair():
-    player1 = [('spades', 'A'),  ('hearts', 'A'),  ('spades', '2'),  ('clubs', '4'), ('spades', '3')]
+def test_check_one_pair():
+    player1 = [('spades', 'ace'),  ('hearts', 'ace'),  ('spades', '2'),  ('clubs', '4'), ('spades', '3')]
     assert part1.one_pair(player1)['status'] == 1, 'Please Check you validity of one_pair'
     assert part1.one_pair(player1)['Marks'] == 28, 'Please Check you evaluation of one_pair'
 
-def check_high_card():
-    player1 = [('spades', 'A'),  ('hearts', 'K'),  ('diamonds', '2'),  ('spades', '4'), ('clubs', '3')]
+def test_check_high_card():
+    player1 = [('spades', 'ace'),  ('hearts', 'king'),  ('diamonds', '2'),  ('spades', '4'), ('clubs', '3')]
     assert part1.high_card(player1)['status'] == 1, 'Please Check you validity of high_card'
     assert part1.high_card(player1)['Marks'] == 36, 'Please Check you evaluation of high_card'
 
-def input_validation_poker():
-    player1 = [('spades', 'A'),   ('spades', '4'), ('clubs', '3')]
-    player2 = [('spades', 'A'),  ('hearts', 'K'),  ('diamonds', '2'),  ('spades', '4'), ('clubs', '3')]
+def test_input_validation_poker():
+    player1 = [('spades', 'ace'),   ('spades', '4'), ('clubs', '3')]
+    player2 = [('spades', 'ace'),  ('hearts', 'king'),  ('diamonds', '2'),  ('spades', '4'), ('clubs', '3')]
     assert part1.poker_game(player1,player2) == "Please check the inputs", 'Please check the input validity'
 
-def input_tuple_validation_poker():
-    player1 = [('spades', 'A'),   ('spades'), ('clubs', '3')]
-    player2 = [('spades', 'A'),  ('hearts'),  ('diamonds', '2'),  ('spades'), ('clubs', '3')]
+def test_input_tuple_validation_poker():
+    player1 = [('spades', 'ace'),   ('spades'), ('clubs', '3')]
+    player2 = [('spades', 'ace'),  ('hearts'),  ('diamonds', '2'),  ('spades'), ('clubs', '3')]
     assert part1.poker_game(player1,player2) == "Please check the inputs", 'Please check the input validity'
 
 
+def test_rounds_20():
+    # 1
+    player1 = [('hearts','10'),('diamonds','10'),('spades','10'),('spades','9'),
+                ('diamond','9')]
+    player2 = [('clubs','8'),('clubs','7'),('clubs','6'),
+                    ('clubs','5'),('clubs','4')]  
+    assert  part1.poker_game(player1,player2) == 'Player2 WON',"Function is predicting wrong"
+
+
+    # 2
+    player1 = [('hearts','10'),('diamonds','10'),('spades','10'),('spades','9'),
+                ('diamond','9')]
+    player2 = [('hearts','5'),('diamonds','8'),('diamonds','6'),('spades','7'),('clubs','9'),]
+    assert  part1.poker_game(player1,player2) == 'Player1 WON',"Function is predicting wrong"
+
+    # 3
+    
+    player1 = [('hearts','ace'),('diamonds','ace'),('spades','4'),('clubs','8'),('hearts','7'),]
+    player2 = [('diamonds','ace'),('diamonds','king'),('diamonds','queen'),
+                ('diamonds','jack'),('diamonds','10')]
+    assert  part1.poker_game(player1,player2) == 'Player2 WON',"Function is predicting wrong"
+
+    # 4
+    player1 = [('hearts','10'),('diamonds','10'),('spades','10'),('spades','9'),
+                ('diamond','9')]
+    player2 = [('spades','2'),('spades','8'),('spades','jack'),('spades','4'),('spades','9'),]
+    assert  part1.poker_game(player1,player2) == 'Player1 WON',"Function is predicting wrong"
+
+    # 5
+    player1 = [('hearts','10'),('diamonds','10'),('spades','10'),('spades','9'),
+                ('diamond','9')]
+    player2 = [('spades','2'),('diamonds','3'),('spades','8'),('clubs','jack'),('hearts','4'),]
+    assert  part1.poker_game(player1,player2) == 'Player1 WON',"Function is predicting wrong"
+
+    # 6
+    player1 = [('hearts','10'),('diamonds','10'),('spades','10'),('spades','9'),
+                ('diamond','9')]
+    player2 = [('hearts','ace'),('diamonds','ace'),('spades','4'),('clubs','8'),('hearts','7'),]
+    assert  part1.poker_game(player1,player2) == 'Player1 WON',"Function is predicting wrong"
+
+    # 7
+    player1 = [('spades','2'),('diamonds','3'),('spades','8'),('clubs','jack'),('hearts','4'),]
+    player2 = [('hearts','jack'),('diamonds','jack'),('spades','jack'),('clubs','jack'),
+            ('diamond','7')]
+    assert  part1.poker_game(player1,player2) == 'Player2 WON',"Function is predicting wrong"
+
+    # 8
+    player1 = [('diamonds','3'),('clubs','3'),('spades','4'),('clubs','4'),('clubs','queen'),]
+    player2 = [('hearts','jack'),('diamonds','jack'),('spades','jack'),('clubs','jack'),
+            ('diamond','7')]
+    assert  part1.poker_game(player1,player2) == 'Player2 WON',"Function is predicting wrong"
+
+    # 09
+    player1 = [('diamonds','3'),('clubs','king'),('diamonds','7'),('spades','7'),('clubs','7'),]
+    player2 = [('hearts','jack'),('diamonds','jack'),('spades','jack'),('clubs','jack'),
+            ('diamond','7')]
+    assert  part1.poker_game(player1,player2) == 'Player2 WON',"Function is predicting wrong"
+
+
+    # 10
+    player1 = [('spades','2'),('spades','8'),('spades','jack'),('spades','4'),('spades','9'),]
+    player2 = [('hearts','jack'),('diamonds','jack'),('spades','jack'),('clubs','jack'),
+            ('diamond','7')]
+    assert  part1.poker_game(player1,player2) == 'Player2 WON',"Function is predicting wrong"
+
+
+    # 11
+    player1 = [('hearts','5'),('diamonds','8'),('diamonds','6'),('spades','7'),('clubs','9'),]
+    player2 = [('hearts','jack'),('diamonds','jack'),('spades','jack'),('clubs','jack'),
+            ('diamond','7')]
+    assert  part1.poker_game(player1,player2) == 'Player2 WON',"Function is predicting wrong"
+
+    # 12
+    player1 = [('clubs','8'),('clubs','7'),('clubs','6'),
+                ('clubs','5'),('clubs','4')]      
+    player2 = [('hearts','jack'),('diamonds','jack'),('spades','jack'),('clubs','jack'),
+            ('diamond','7')]
+    assert  part1.poker_game(player1,player2) == 'Player1 WON',"Function is predicting wrong"
+
+
+    # 13
+    player1 = [('diamonds','ace'),('diamonds','king'),('diamonds','queen'),
+                ('diamonds','jack'),('diamonds','10')]
+    player2 = [('hearts','jack'),('diamonds','jack'),('spades','jack'),('clubs','jack'),
+            ('diamond','7')]
+    assert  part1.poker_game(player1,player2) == 'Player1 WON',"Function is predicting wrong"
+
+    # 14
+    player1 = [('diamonds','3'),('clubs','3'),('spades','4'),('clubs','4'),('clubs','queen'),]
+    player2 = [('hearts','ace'),('diamonds','ace'),('spades','4'),('clubs','8'),('hearts','7'),]
+    assert  part1.poker_game(player1,player2) == 'Player1 WON',"Function is predicting wrong"
+
+    # 15
+    
+    player1 = [('diamonds','3'),('clubs','king'),('diamonds','7'),('spades','7'),('clubs','7'),]
+    player2 = [('hearts','ace'),('diamonds','ace'),('spades','4'),('clubs','8'),('hearts','7'),]
+    assert  part1.poker_game(player1,player2) == 'Player1 WON',"Function is predicting wrong"
+
+    # 16
+    player1 = [('spades','2'),('spades','8'),('spades','jack'),('spades','4'),('spades','9'),]
+    player2 = [('hearts','ace'),('diamonds','ace'),('spades','4'),('clubs','8'),('hearts','7'),]
+    assert  part1.poker_game(player1,player2) == 'Player1 WON',"Function is predicting wrong"
+
+    # 17
+    player1 = [('hearts','5'),('diamonds','8'),('diamonds','6'),('spades','7'),('clubs','9'),]
+    player2 = [('diamonds','3'),('clubs','3'),('spades','4'),('clubs','4'),('clubs','queen'),]
+    assert  part1.poker_game(player1,player2) == 'Player1 WON',"Function is predicting wrong"
+
+    # 18
+    player1 = [('clubs','8'),('clubs','7'),('clubs','6'),
+                ('clubs','5'),('clubs','4')]    
+    player2 = [('diamonds','3'),('clubs','3'),('spades','4'),('clubs','4'),('clubs','queen'),]
+    assert  part1.poker_game(player1,player2) == 'Player1 WON',"Function is predicting wrong"
+
+    # 19
+    player1 = [('diamonds','ace'),('diamonds','king'),('diamonds','queen'),
+                ('diamonds','jack'),('diamonds','10')]
+    player2 = [('diamonds','3'),('clubs','3'),('spades','4'),('clubs','4'),('clubs','queen'),]
+    assert  part1.poker_game(player1,player2) == 'Player1 WON',"Function is predicting wrong"
+
+    # 20
+    player1 = [('spades','2'),('spades','8'),('spades','jack'),('spades','4'),('spades','9'),]
+    player2 = [('diamonds','3'),('clubs','king'),('diamonds','7'),('spades','7'),('clubs','7'),]
+    assert  part1.poker_game(player1,player2) == 'Player1 WON',"Function is predicting wrong"
 
 
 
